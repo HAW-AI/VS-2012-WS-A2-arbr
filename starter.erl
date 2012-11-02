@@ -4,12 +4,13 @@
 -module(starter).
 
 
--record(starter_config, {nummer,praktikumsgruppe,teamnummer,nameservicenode,koordinatorname}).
+-record(starter_config, {praktikumsgruppe,teamnummer,nameservicenode,koordinatorname}).
 
 %%
 %% Include files
 %%
 -import(util, [timestamp/0]).
+-import(werkzeug,[get_config_value/2]).
 %%
 %% Exported Functions
 %%
@@ -18,35 +19,52 @@
 %%
 %% API Functions
 %%
-start(Nummer)->
-	{ok, ConfigListe} = file:consult("ggt.cfg"),
-	Praktikumsgruppe = proplists:get_value(praktikumsgruppe, ConfigListe),
-	Teamnummer = poplists:get_value(teamnummer, ConfigListe),
-	Nameservicenode = poplists:get_value(nameservicenode, ConfigListe),
-	Koordinatorname = poplists:get_value(koordinatorname, ConfigListe),
-	Config = #starter_config{nummer=Nummer,
-							 praktikumsgruppe = Praktikumsgruppe,
-							 teamnummer = Teamnummer,
-							 nameservicenode = Nameservicenode,
-							 koordinatorname=Koordinatorname
-							},
-	spawn(fun() -> log("Starter ~p (~p)gestartet",[self(), Nummer]), loop(Config) end).
 
-loop(Config) ->
-	Config#starter_config.koordinatorname ! getsteeringval,
-	receive
-		{steeringval,ArbeitsZeit,TermZeit,GGTProzessnummer} -> ok;
-		Any -> log("Eine unbekannte Nachricht ~p wurde empfange", [Any])
+start(Nummer) ->
+	Config = get_configs(),
+	net_adm:ping(Config#starter_config.nameservicenode),
+	Nameservice = global:whereis_name(Config#starter_config.nameservicenode),
+	if
+		Nameservice == undefined -> log("Koordinator wurde nicht gefunden");
+		true -> Nameservice ! {self(), {lookup, Config#starter_config.koordinatorname}}
 	end,
-	ok.
+	receive
+		{KoordinatorName, KoordinatorNode} ->
+			log("Koordinator ~p in der Node ~p gebunden",[KoordinatorName,KoordinatorNode]),
+			{KoordinatorName, KoordinatorNode} ! {getsteeringval, self()},
+			receive
+				{steeringval, ArbeitsZeit, TermZeit, GGTProzessAnzahl} ->
+					log("Erstelle GGT-Prozess (Steeringval:~p , Arbeitszeit: ~p , TermZeit: ~p , GGTProzessAnzahl: ~p)",[steeringval, ArbeitsZeit, TermZeit, GGTProzessAnzahl]),
+					Fun = fun(ProzessNr) ->
+								  ggt:start({KoordinatorName, KoordinatorNode},ArbeitsZeit*1000,TermZeit*1000,ProzessNr,Nummer,Nameservice,Config#starter_config.praktikumsgruppe,Config#starter_config.teamnummer),
+								  log("GGT-Prozess Nr: ~p wurde gestartet",[ProzessNr])
+						  end,
+					lists:foreach(Fun, lists:seq(1, GGTProzessAnzahl))
+			end;
+		not_found -> log("Koordinator node konnte nicht gebunden werden")
+	end.
 
 %%
 %% Local Functions
 %%
+get_configs()->
+	{ok, ConfigListe} = file:consult("ggt.cfg"),
+	{ok, Praktikumsgruppe} = get_config_value(praktikumsgruppe, ConfigListe),
+	{ok, Teamnummer} = get_config_value(teamnummer, ConfigListe),
+	{ok, Nameservicenode} = get_config_value(nameservicenode, ConfigListe),
+	{ok, Koordinatorname} = get_config_value(koordinatorname, ConfigListe),
+	#starter_config{
+					praktikumsgruppe = Praktikumsgruppe,
+					teamnummer = Teamnummer,
+					nameservicenode = Nameservicenode,
+					koordinatorname=Koordinatorname
+					}.
+
 log(Message) ->
   log(Message, []).
 log(Message, Data) ->
   util:log(logfile(), Message, Data).
 
 logfile() ->
-  "Starter.log".
+	{ok, Hostname} = inet:gethostname(),
+  "Starter@"+[Hostname]+".log".
