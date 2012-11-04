@@ -33,7 +33,7 @@ start(KoordinatorPID, Arbeitszeit, TermZeit, ProzessNr, StarterNr, NameservicePI
 	Config#ggt_config.nameservicepid ! {self(), {rebind, name(Config), node()}},
 	receive
 		ok -> log("Verbunden mit ~p",[Config#ggt_config.nameservicepid],Config);
-		kill -> ok %TODO auf kill reagieren
+		kill -> unbind(Config)
 	after 5000 ->
 			log("Namensdienst ~p antwortet nicht",[Config#ggt_config.nameservicepid],Config)
 	end,
@@ -45,18 +45,19 @@ start(KoordinatorPID, Arbeitszeit, TermZeit, ProzessNr, StarterNr, NameservicePI
 			log("Ich habe die Nachbarn kennengelernt(L: ~p , R: ~p)",Config,[LeftN,RightN]),
 			NewConfig = Config#ggt_config{leftN = LeftN, rightN=RightN};
 		kill ->
-			ok
+			unbind(Config)
 	after 60000 ->
 			log("Ich habe keine Infos bezüglich der Nachbarn erhalten",Config)
 	end,
-	ConfigWithNeighbors = resolve_neighbors(NewConfig), %TODO resolve_neighbors
+	ConfigWithNeighbors = resolve_neighbors(NewConfig),
 	% Mi-Wert vom Koordinator erhalten
 	receive
 		{setpm, MiNeu} -> Mi = MiNeu,
 						  log("Der neu Mi-Wert ist ~p",ConfigWithNeighbors,[MiNeu]),
 						  NewerConfig = ConfigWithNeighbors#ggt_config{lastSendy=now()};
 		kill -> NewerCofig = ConfigWithNeighbors,
-				Mi=0 %TODO kill-routine
+				Mi=0,
+				unbind(ConfigWithNeighbors)
 	end,
 	spawn(fun() -> log("GGTP ~p (~p) gestartet",NewerConfig,[self(), name(NewerConfig)]), loop(NewerConfig,Mi) end).
 
@@ -66,6 +67,33 @@ start(KoordinatorPID, Arbeitszeit, TermZeit, ProzessNr, StarterNr, NameservicePI
 %%
 loop(Config,Mi)->
 	ok.
+
+resolve_neighbors(Config) ->
+	%Der rechte Nachbarname wird aufgelöst
+	Config#ggt_config.nameservicepid ! {self(), {lookup, Config#ggt_config.leftN}},
+	receive
+		not_found ->
+			log("Linker Nachbar ~p wurde nicht aufgelöst",Config,[Config#ggt_config.leftN]),
+			LeftNTupel = {};
+		{LeftName, LeftNode} ->
+			log("Linker Nachbar ~p ist auf dem Node ~p",Config,[LeftName,LeftNode]),
+			LeftNTupel = {LeftName, LeftNode}
+	end,
+	%Der linke Nachbarname wird aufgelöst
+	Config#ggt_config.nameservicepid ! {self(), {lookup, Cofig#ggt_config.rightN}},
+	receive
+		not_found ->
+			log("Der rechte Nachbar ~p wurde nicht aufgelöst",Config,[Config#ggt_config.rightN]),
+			RightNTupel = {};
+		{RightName, RightNode} ->
+			log("Rechter Nachbar ~p ist auf dem Node ~p",Config,[RightName,RightNode]),
+			RightNTupel = {RightName, RightNode}
+	end,
+	Config#ggt_config{leftN=LeftNTupel, rightN=RightNTupel}.
+		
+unbind(Config)->
+	Config#config.namensDPID! {self(),{unbind, name(Config)}},
+	log("~p - Verbindung getrennt",Config,[toString(name(Config))]).
 
 name(Config) ->
 	%
