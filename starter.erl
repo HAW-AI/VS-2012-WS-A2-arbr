@@ -25,23 +25,23 @@ start(Nummer) ->
 	net_adm:ping(Config#starter_config.nameservicenode),
 	Nameservice = global:whereis_name(Config#starter_config.nameservicenode),
 	if
-		Nameservice == undefined -> log("Koordinator wurde nicht gefunden");
+		Nameservice == undefined -> log("Nameservice wurde nicht gefunden",Nummer);
 		true -> Nameservice ! {self(), {lookup, Config#starter_config.koordinatorname}}
 	end,
 	receive
 		{KoordinatorName, KoordinatorNode} ->
-			log("Koordinator ~p in der Node ~p gebunden",[KoordinatorName,KoordinatorNode]),
+			log("Koordinator ~p in der Node ~p gebunden",[KoordinatorName,KoordinatorNode],Nummer),
 			{KoordinatorName, KoordinatorNode} ! {getsteeringval, self()},
 			receive
 				{steeringval, ArbeitsZeit, TermZeit, GGTProzessAnzahl} ->
-					log("Erstelle GGT-Prozess (Steeringval:~p , Arbeitszeit: ~p , TermZeit: ~p , GGTProzessAnzahl: ~p)",[steeringval, ArbeitsZeit, TermZeit, GGTProzessAnzahl]),
+					log("Erstelle GGT-Prozess (Steeringval:~p , Arbeitszeit: ~p , TermZeit: ~p , GGTProzessAnzahl: ~p)",[steeringval, ArbeitsZeit, TermZeit, GGTProzessAnzahl],Nummer),
 					Fun = fun(ProzessNr) ->
 								  ggt:start({KoordinatorName, KoordinatorNode},ArbeitsZeit*1000,TermZeit*1000,ProzessNr,Nummer,Nameservice,Config#starter_config.praktikumsgruppe,Config#starter_config.teamnummer),
-								  log("GGT-Prozess Nr: ~p wurde gestartet",[ProzessNr])
+								  log("GGT-Prozess Nr: ~p wurde gestartet",[ProzessNr],Nummer)
 						  end,
 					lists:foreach(Fun, lists:seq(1, GGTProzessAnzahl))
 			end;
-		not_found -> log("Koordinator node konnte nicht gebunden werden")
+		not_found -> log("Koordinator node konnte nicht gebunden werden",Nummer)
 	end.
 
 %%
@@ -60,11 +60,12 @@ get_configs()->
 					koordinatorname=Koordinatorname
 					}.
 
-log(Message) ->
-  log(Message, []).
-log(Message, Data) ->
-  util:log(logfile(), Message, Data).
+log(Message,Nummer) ->
+  log(Message, [],Nummer).
+log(Message, Data,Nummer) ->
+  util:log(logfile(Nummer), Message, Data).
 
-logfile() ->
+logfile(Nummer) ->
 	{ok, Hostname} = inet:gethostname(),
-  "Starter@"+[Hostname]+".log".
+	StringNummer = lists:flatten(io_lib:format("~p", [Nummer])),
+  "Starter_"++StringNummer++"@"++Hostname++".log".
