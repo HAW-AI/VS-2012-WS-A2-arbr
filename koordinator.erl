@@ -3,6 +3,8 @@
 
 -export([start/0]).
 
+-import(util, [log/3]).
+
 -record(state,{
     config,
     clients=orddict:new()
@@ -80,3 +82,18 @@ loop_work(State) ->
     kill ->
       ok
   end.
+
+
+log(Message) ->
+  log(Message, []).
+log(Message, Data) -> spawn(fun() ->
+  util:log(logfile(), Message, Data)
+  end).
+
+logfile() ->
+  { ok, Hostname } = inet:gethostname(),
+  lists:flatten(io_lib:format("~s@~s.~s", ["Koordinator", Hostname, "log"])).
+
+
+
+
