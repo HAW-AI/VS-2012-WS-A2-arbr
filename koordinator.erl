@@ -50,7 +50,12 @@ loop_initial(State) ->
   receive
     % Die Anfrage nach den steuernden Werten durch den Starter Prozess.
     { getsteeringval, Sender } ->
-      ok;
+      % {steeringval,ArbeitsZeit,TermZeit,GGTProzessnummer}
+      ArbeitsZeit = proplists:get_value(arbeitszeit, State#state.config),
+      TermZeit = proplists:get_value(termzeit, State#state.config),
+      GGTProzessnummer = proplists:get_value(ggtprozessnummer, State#state.config),
+      Sender ! { steeringval, ArbeitsZeit, TermZeit, GGTProzessnummer },
+      loop_initial(State);
 
     % Ein ggT-Prozess meldet sich beim Koordinator mit Namen Clientname an (Name ist der lokal registrierte Name!).
     { hello, SenderName } ->
