@@ -7,7 +7,7 @@
 
 -record(state,{
     config,
-    clients=orddict:new()
+    clients=[]
   }).
 
 % Der Koordinator, der den verteilten Algorithmus verwaltet.
@@ -61,7 +61,7 @@ loop_initial(State) ->
 
     % Ein ggT-Prozess meldet sich beim Koordinator mit Namen Clientname an (Name ist der lokal registrierte Name!).
     { hello, SenderName } ->
-      Clients = orddict:append(SenderName, State#state.clients),
+      Clients = lists:append(SenderName, State#state.clients),
       loop_initial(State#state{clients=Clients})
   end.
 
