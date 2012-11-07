@@ -16,7 +16,7 @@
 start() ->
   {ok, Config} = file:consult('koordinator.cfg'),
   State = #state{config=Config},
-  KoordinatorPid = spawn(fun() -> loop(State) end),
+  KoordinatorPid = spawn(fun() -> log("starting koordinator"), loop(State) end),
   register(proplists:get_value(koordinatorname, Config), KoordinatorPid),
   ok.
 
