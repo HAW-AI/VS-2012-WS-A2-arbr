@@ -13,7 +13,7 @@
 % Der Koordinator verfügt über eine GUI (Textausgabe reicht aus), in der der Ablauf des Algorithmus beobachtet werden kann.
 start() ->
   {ok, Config} = file:consult('koordinator.cfg'),
-  State = #state{config=Config}
+  State = #state{config=Config},
   KoordinatorPid = spawn(fun() -> loop(State) end),
   register(proplists:get_value(koordinatorname, Config), KoordinatorPid),
   ok.
@@ -54,8 +54,7 @@ loop_initial(State) ->
 
     % Ein ggT-Prozess meldet sich beim Koordinator mit Namen Clientname an (Name ist der lokal registrierte Name!).
     { hello, SenderName } ->
-      ok;
-
+      ok
   end.
 
 loop_work(State) ->
