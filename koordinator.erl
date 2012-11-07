@@ -68,6 +68,7 @@ loop_initial(State) ->
       loop_initial(State#state{clients=Clients});
 
     start ->
+      log("start"),
       Clients = shuffle:list(State#state.clients),
       loop_work(State#state{clients=Clients})
   end.
@@ -76,14 +77,17 @@ loop_work(State) ->
   receive
     % Ein ggT-Prozess mit Namen Clientname informiert über sein neues Mi CMi um CZeit Uhr.
     { briefmi, { Clientname, CMi, CZeit } } ->
+      log("(~s) briefmi", [Clientname]),
       ok;
 
     % Ein ggT-Prozess mit Namen Clientname informiert über über die Terminierung der Berechnung mit Ergebnis CMi um CZeit Uhr.
     { briefterm, { Clientname, CMi, CZeit } } ->
+      log("(~s) briefterm", [Clientname]),
       ok;
 
     %: Der Koordinator sendet allen ggT-Prozessen das kill-Kommando und bringt sich selbst in den initialen Zustand, indem sich Starter wieder melden können.
     reset ->
+      log("reset"),
       lists:foreach(
         % kill: der ggT-Prozess wird beendet.
         fun(client) -> client ! kill end,
@@ -93,6 +97,7 @@ loop_work(State) ->
 
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
     kill ->
+      log("kill"),
       ok
   end.
 
