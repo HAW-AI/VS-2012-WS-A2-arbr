@@ -36,7 +36,9 @@ start() ->
 % * Ist der Koordinator im Zustand "beenden" informiert er die ggT-Prozesse über die Beendigung (kill).
 % * Der Koordinator ist in Erlang/OTP zu implementieren und muss auf jedem Rechner im Labor startbar sein!
 
-loop() ->
+loop() -> loop_initial().
+
+loop_initial() ->
   receive
     % Die Anfrage nach den steuernden Werten durch den Starter Prozess.
     { getsteeringval, Sender } ->
@@ -46,6 +48,10 @@ loop() ->
     { hello, SenderName } ->
       ok;
 
+  end.
+
+loop_work() ->
+  receive
     % Ein ggT-Prozess mit Namen Clientname informiert über sein neues Mi CMi um CZeit Uhr.
     { briefmi, { Clientname, CMi, CZeit } } ->
       ok;
@@ -56,7 +62,7 @@ loop() ->
 
     %: Der Koordinator sendet allen ggT-Prozessen das kill-Kommando und bringt sich selbst in den initialen Zustand, indem sich Starter wieder melden können.
     reset ->
-      ok;
+      loop_initial();
 
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
     kill ->
