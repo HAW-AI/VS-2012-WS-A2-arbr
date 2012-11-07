@@ -52,6 +52,7 @@ loop_initial(State) ->
   receive
     % Die Anfrage nach den steuernden Werten durch den Starter Prozess.
     { getsteeringval, Sender } ->
+      log("(~p) getsteeringval", [Sender]),
       % {steeringval,ArbeitsZeit,TermZeit,GGTProzessnummer}
       ArbeitsZeit = proplists:get_value(arbeitszeit, State#state.config),
       TermZeit = proplists:get_value(termzeit, State#state.config),
@@ -61,6 +62,7 @@ loop_initial(State) ->
 
     % Ein ggT-Prozess meldet sich beim Koordinator mit Namen Clientname an (Name ist der lokal registrierte Name!).
     { hello, SenderName } ->
+      log("(~s) hello", [SenderName]),
       Clients = lists:append(SenderName, State#state.clients),
       loop_initial(State#state{clients=Clients})
   end.
