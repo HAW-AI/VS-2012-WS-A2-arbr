@@ -14,7 +14,7 @@
 start() ->
   {ok, Config} = file:consult('koordinator.cfg'),
   State = #state{config=Config}
-
+  spawn(fun() -> loop(State) end),
   ok.
 
 % * Die benötigten steuernden Werte sind aus der Datei koordinator.cfg auszulesen und umfassen:
@@ -43,9 +43,9 @@ start() ->
 % * Ist der Koordinator im Zustand "beenden" informiert er die ggT-Prozesse über die Beendigung (kill).
 % * Der Koordinator ist in Erlang/OTP zu implementieren und muss auf jedem Rechner im Labor startbar sein!
 
-loop() -> loop_initial().
+loop(State) -> loop_initial(State).
 
-loop_initial() ->
+loop_initial(State) ->
   receive
     % Die Anfrage nach den steuernden Werten durch den Starter Prozess.
     { getsteeringval, Sender } ->
@@ -57,7 +57,7 @@ loop_initial() ->
 
   end.
 
-loop_work() ->
+loop_work(State) ->
   receive
     % Ein ggT-Prozess mit Namen Clientname informiert über sein neues Mi CMi um CZeit Uhr.
     { briefmi, { Clientname, CMi, CZeit } } ->
@@ -69,7 +69,7 @@ loop_work() ->
 
     %: Der Koordinator sendet allen ggT-Prozessen das kill-Kommando und bringt sich selbst in den initialen Zustand, indem sich Starter wieder melden können.
     reset ->
-      loop_initial();
+      loop_initial(State);
 
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
     kill ->
