@@ -1,5 +1,5 @@
 -module(shuffle).
--author("Adam Lindberg") % http://stackoverflow.com/a/8817812/411795
+-author("Adam Lindberg"). % http://stackoverflow.com/a/8817812/411795
 
 -export([list/1]).
 
