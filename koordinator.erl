@@ -14,7 +14,8 @@
 start() ->
   {ok, Config} = file:consult('koordinator.cfg'),
   State = #state{config=Config}
-  spawn(fun() -> loop(State) end),
+  KoordinatorPid = spawn(fun() -> loop(State) end),
+  register(proplists:get_value(koordinatorname, Config), KoordinatorPid),
   ok.
 
 % * Die benötigten steuernden Werte sind aus der Datei koordinator.cfg auszulesen und umfassen:
