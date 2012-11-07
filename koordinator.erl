@@ -3,11 +3,18 @@
 
 -export([start/0]).
 
+-record(state,{
+    config,
+    clients=orddict:new()
+  }).
+
 % Der Koordinator, der den verteilten Algorithmus verwaltet.
 % Dazu gehören das hochfahren des Systems, den Start einer ggT-Berechnung und das herunterfahren des Systems.
 % Der Koordinator verfügt über eine GUI (Textausgabe reicht aus), in der der Ablauf des Algorithmus beobachtet werden kann.
 start() ->
   {ok, Config} = file:consult('koordinator.cfg'),
+  State = #state{config=Config}
+
   ok.
 
 % * Die benötigten steuernden Werte sind aus der Datei koordinator.cfg auszulesen und umfassen:
