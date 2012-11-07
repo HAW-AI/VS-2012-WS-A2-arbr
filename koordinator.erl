@@ -4,6 +4,7 @@
 -export([start/0]).
 
 -import(util, [log/3]).
+-import(shuffle, [list/1]).
 
 -record(state,{
     config,
@@ -64,7 +65,11 @@ loop_initial(State) ->
     { hello, SenderName } ->
       log("(~s) hello", [SenderName]),
       Clients = lists:append(SenderName, State#state.clients),
-      loop_initial(State#state{clients=Clients})
+      loop_initial(State#state{clients=Clients});
+
+    start ->
+      Clients = shuffle:list(State#state.clients),
+      loop_work(State#state{clients=Clients})
   end.
 
 loop_work(State) ->
