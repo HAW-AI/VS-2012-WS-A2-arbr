@@ -83,7 +83,7 @@ loop_work(State) ->
         % kill: der ggT-Prozess wird beendet.
         fun(client) -> client ! kill end,
         State#state.clients
-      )
+      ),
       loop_initial(State);
 
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
