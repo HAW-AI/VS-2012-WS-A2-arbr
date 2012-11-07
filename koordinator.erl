@@ -79,6 +79,11 @@ loop_work(State) ->
 
     %: Der Koordinator sendet allen ggT-Prozessen das kill-Kommando und bringt sich selbst in den initialen Zustand, indem sich Starter wieder melden können.
     reset ->
+      lists:foreach(
+        % kill: der ggT-Prozess wird beendet.
+        fun(client) -> client ! kill end,
+        State#state.clients
+      )
       loop_initial(State);
 
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
