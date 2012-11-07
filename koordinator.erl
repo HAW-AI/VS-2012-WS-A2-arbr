@@ -61,7 +61,8 @@ loop_initial(State) ->
 
     % Ein ggT-Prozess meldet sich beim Koordinator mit Namen Clientname an (Name ist der lokal registrierte Name!).
     { hello, SenderName } ->
-      ok
+      Clients = orddict:append(SenderName, State#state.clients),
+      loop_initial(State#state{clients=Clients})
   end.
 
 loop_work(State) ->
