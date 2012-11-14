@@ -15,6 +15,7 @@
 -author("Ben Rexin <benjamin.rexin@haw-hamburg.de>").
 
 -export([start/0]).
+-compile([export_all]).
 
 -import(util, [log/3]).
 -import(shuffle, [list/1]).
@@ -111,6 +112,11 @@ loop_work(State) ->
     % Der Koordinator wird beendet und sendet allen ggT-Prozessen das kill-Kommando.
     kill ->
       log("kill"),
+      lists:foreach(
+        % kill: der ggT-Prozess wird beendet.
+        fun(client) -> client ! kill end,
+        State#state.clients
+      ),
       ok
   end.
 
