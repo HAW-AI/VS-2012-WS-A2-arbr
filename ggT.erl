@@ -14,7 +14,7 @@
 	rightN,
 	logfile,
 	lastSendy}).
-
+%
 %-import(util, [log/3]).
 %-define(Log(FromatS, ArgsS), werkzeug:logging("GGTP_" ++ Config#config.myID ++ "@" ++ net_adm:localhost() ++ ".log", nice_format(FormatS, ArgsS))).
 
