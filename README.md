@@ -30,7 +30,7 @@ Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 	``` chef ! {start_distributed_gcd_calculation, N} ```
 	oder 
 	``` coordinator:start_distributed_gcd_calculation(N). ```
-	N - Anzahl
+	N - ggT
 	
 6. Koordinator neustarten:
 	``` chef ! reset. ```
