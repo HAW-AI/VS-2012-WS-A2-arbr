@@ -7,39 +7,39 @@ Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 1. Nameservice starten:
 	> erl -(s)name ns -cookie vsp  
 	
-	```nameservice:start().```
+	``` nameservice:start(). ```
 	
 2. Koordinator starten:
 	> erl -(s)name coordinator -cookie vsp  
 	
-	```coordinator:start().```
+	``` coordinator:start(). ```
 	
 3. Starter starten:
 	> erl -(s)name starter -cookie vsp  
 	
-	```starter:start(N).```
+	``` starter:start(N). ```
 
 	N - Anzahl der ggT-Prozesse, die erzeugt werden müssen
 	
 4. Koordinator in Ready-Zustand versetzen:
-	```chef ! get_ready.``` 
+	``` chef ! get_ready. ``` 
 	oder 
-	```coordinator:get_ready().```
+	``` coordinator:get_ready(). ```
 	
 5. Über Koordinator den Start-Befehl erteilen:
-	```chef ! {start_distributed_gcd_calculation, N}```
+	``` chef ! {start_distributed_gcd_calculation, N} ```
 	oder 
-	```coordinator:start_distributed_gcd_calculation(N).```
-	N - Anzahl
+	``` coordinator:start_distributed_gcd_calculation(N). ```
+	N - ggT
 	
 6. Koordinator neustarten:
-	```chef ! reset.```
+	``` chef ! reset. ```
 	oder
-	```coordinator:reset().```
+	``` coordinator:reset(). ```
 	
 7. Beenden:
-	```chef ! kill.``` 
+	``` chef ! kill. ``` 
 	oder
-	```coordinator:kill().```
+	``` coordinator:kill(). ```
 	
 
