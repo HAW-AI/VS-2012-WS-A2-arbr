@@ -1,4 +1,4 @@
--module(ggT).
+-module(ggt).
 -export([start/8, init/8]).
 -record(config,
     {	teamID=14,
