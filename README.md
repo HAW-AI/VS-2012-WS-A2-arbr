@@ -2,7 +2,7 @@ VS-2012-WS-A2-arbr
 ==================
 Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 
-0. Folgende Dateien müssen kompiliert werden: coordinator.erl, util.erl, werkzeug.erl, ggT.erl, starter.erl
+0. Folgende Dateien müssen kompiliert werden: nameservice.erl, coordinator.erl, util.erl, werkzeug.erl, ggt.erl, starter.erl
 
 	```c(nameservice). c(util). c(werkzeug). c(ggt). c(starter). c(coordinator).```
 
