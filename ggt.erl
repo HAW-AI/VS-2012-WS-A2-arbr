@@ -99,8 +99,9 @@ loop(Config,Mi)->
 	receive 
 
 		% Rekursiver Aufruf der ggT Berechnung.
-		{sendy,Y}  -> 	werkzeug:logging(Config#config.logfile, nice_format("~p received sendy : ~p",[util:timestamp(),Y])),
-				Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config) ,
+		{sendy,Y}  ->
+				werkzeug:logging(Config#config.logfile, nice_format("~p received sendy : ~p",[util:timestamp(),Y])),
+				Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config),
 				io:format("Mi: ~p Mi2: ~p", [Mi, Mi2]),
 				NewConfig=Config#config{lastSendy=now()},
 				if 
@@ -147,9 +148,9 @@ loop(Config,Mi)->
 algo(Mi, Y, Arbeitszeit,Config) ->  % 21.
 			werkzeug:logging(Config#config.logfile,nice_format("~p algo(Mi: ~p, Y: ~p, Arbeitszeit: ~p)",[util:timestamp(),Mi, Y, Arbeitszeit])),
 			timer:sleep(Arbeitszeit),
- 	 		if 
-				Y<Mi	->	(trunc(Mi-1) rem trunc(Y))+1;
-				true 	-> Mi
+ 	 		case Y < Mi of
+				true -> (trunc(Mi-1) rem trunc(Y))+1;
+				_ -> Mi
 			end.
 			
 sendToNs(Config, Mi)	-> werkzeug:logging(Config#config.logfile, nice_format("~p send sendy (~p) to ~p and ~p",[util:timestamp(), Mi, Config#config.leftN, Config#config.rightN])), Config#config.leftN ! {sendy, Mi}, Config#config.rightN ! {sendy, Mi}.
@@ -166,9 +167,11 @@ abstimmung(Config, Mi)	->
 			Config#config.rightN ! {abstimmung, OtherID}, abstimmung(Config, Mi);
 
 		% Aufruf der ggT Berechnung + zustands�nderung in "aktiv berechnen", zur�ck zu loop(...)
-		{sendy,Y}  -> Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config) , 
+		{sendy,Y}  ->
+				werkzeug:logging(Config#config.logfile, nice_format("~p received sendy : ~p",[util:timestamp(),Y])),
+				Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config),
+				io:format("Mi: ~p Mi2: ~p", [Mi, Mi2]),
 				NewConfig=Config#config{lastSendy=now()},
-				  io:format("Mi: ~p Mi2: ~p", [Mi, Mi2]),
 				if 
 					Mi2 =/= Mi -> sendToNs(NewConfig,Mi2),
 						NewConfig#config.koordPID ! {briefmi, {NewConfig#config.myID, Mi2, werkzeug:timeMilliSecond()}},
