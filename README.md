@@ -2,6 +2,9 @@ VS-2012-WS-A2-arbr
 ==================
 Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 
+## Verwendung
+**Hinweis: ** Erfolgreich unter "Erlang R15B02" getestet. 
+
 0. Folgende Dateien müssen kompiliert werden: nameservice.erl, coordinator.erl, util.erl, werkzeug.erl, ggt.erl, starter.erl
 
 	```c(nameservice). c(util). c(werkzeug). c(ggt). c(starter). c(coordinator).```
@@ -46,3 +49,5 @@ Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 	``` coordinator:kill(). ```
 	
 
+## Probleme
+Wir haben die Aufgabenstellung unter "Erlang R15B02" erfolgreich testen können, ein Protokoll des Ablaufs kann in ```log_ben_local``` nachvollzogen werden. Leider kommt es unter "Erlang R14B02" zu einem für uns nicht nachvollziehbarem Problem, so das die ggt Prozesse frühzeitig die Berechnung beenden. Nach Recherche verwendet wir keine "außergewöhnlichen"/Versionsabhängigen Funktionalitäten. 
