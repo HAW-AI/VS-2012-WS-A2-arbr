@@ -34,7 +34,8 @@ Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 	``` coordinator:start_distributed_gcd_calculation(N). ```
 	N - ggT
 	
-6. Koordinator neustarten:
+6. Koordinator zurücksetzen:
+	Es werden alle ggt-Prozesse beendet und der Koordinator in den Anfangszustand zurück versetzt.
 	``` chef ! reset. ```
 	oder
 	``` coordinator:reset(). ```
