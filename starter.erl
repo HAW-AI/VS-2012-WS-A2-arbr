@@ -23,9 +23,10 @@
 start(Nummer) ->
 	Config = get_configs(),
 	net_adm:ping(Config#starter_config.nameservicenode),
-	Nameservice = global:whereis_name(Config#starter_config.nameservicenode),
+	global:sync(),
+	Nameservice = global:whereis_name(nameservice),
 	if
-		Nameservice == undefined -> log("Nameservice wurde nicht gefunden",Nummer);
+		Nameservice == undefined -> log("Nameservice wurde nicht gefunden",Nummer), exit("Nameservice wurde nicht gefunden");
 		true -> Nameservice ! {self(), {lookup, Config#starter_config.koordinatorname}}
 	end,
 	receive
