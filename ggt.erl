@@ -150,7 +150,7 @@ algo(Mi, Y, Arbeitszeit,Config) ->  % 21.
 			werkzeug:logging(Config#config.logfile,nice_format("~p algo(Mi: ~p, Y: ~p, Arbeitszeit: ~p)",[util:timestamp(),Mi, Y, Arbeitszeit])),
 			timer:sleep(Arbeitszeit),
  	 		case Y < Mi of
-				true -> (trunc(Mi-1) rem trunc(Y))+1;
+				true -> ((Mi-1) rem Y)+1;
 				_ -> Mi
 			end.
 			
