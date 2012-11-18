@@ -11,7 +11,8 @@
 * ```Config``` wird an ```algo```, für's logging, übergeben.
 * Wartezeit für ```after```-Blöcke wurde vervielfacht.
 * Es wird nun in ```algo``` korrekt der neu errechnete ```MI``` zurückgegeben.
-* {sendy,Y} blöcke in ```loop``` und ```Abstimmung``` angeblichen (Logging). 
+* {sendy,Y} blöcke in ```loop``` und ```Abstimmung``` angeblichen (Logging).
+* changed some ```if``` to ```case … of``` for readability
 
 ## starter.erl
 * Es wurde ein ```global:sync()``` nach dem pingen des Nameservice-Nodes eingefügt. 
