@@ -26,7 +26,7 @@ gen_myid(PG, TID, PNR, SNR) ->
 
 % parameterreihenfolge nicht mehr �ndern
 start(KoordName,Arbeitzeit, TermZeit,ProzessNR, StarterNR,NamensDPID, Praktikumsgruppe, TeamID) ->
-	spawn(ggT, init, [KoordName,Arbeitzeit, TermZeit,ProzessNR, StarterNR,NamensDPID, Praktikumsgruppe, TeamID]).
+	spawn(ggt, init, [KoordName,Arbeitzeit, TermZeit,ProzessNR, StarterNR,NamensDPID, Praktikumsgruppe, TeamID]).
 
 resolve_neighbors(Config) ->
 	% rechten nachbarnamen aufl�sen
