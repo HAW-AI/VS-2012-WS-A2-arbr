@@ -19,7 +19,7 @@ Verteilte Systeme - Winter Semester 2012 - Aufgabe 2
 	
 	``` starter:start(N). ```
 
-	N - Anzahl der ggT-Prozesse, die erzeugt werden müssen
+	N - Nummer des Starters
 	
 4. Koordinator in Ready-Zustand versetzen:
 	``` chef ! get_ready. ``` 
