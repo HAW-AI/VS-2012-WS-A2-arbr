@@ -1,0 +1,41 @@
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:20,707| Successfully bound at nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:20,708| Entering State: Initial
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,357| Starter is requesting steering values
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,381| Client has been registered under the name: '11411'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,383| Searching for service '11411' at the nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,391| Client has been registered under the name: '11421'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,392| Searching for service '11421' at the nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,402| Client has been registered under the name: '11431'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:28,403| Searching for service '11431' at the nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,713| Searching for service chef at the nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,743| Entering State: Get Ready
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,744| Building ring of GCD Clients
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,746| Build ring of gcd clients
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,767| Building the ring of gcd clients succeeded
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,769| Introducing GCD clients to their neighbors
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,770| set GCD client '11411': left neighbor: '11421', right neighbor: '11431'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,772| set GCD client '11421': left neighbor: '11431', right neighbor: '11411'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,777| set GCD client '11431': left neighbor: '11411', right neighbor: '11421'
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:51:54,779| Entering State: Ready
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,100| Searching for service chef at the nameservice
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,111| The GCD process '11411': initial Mi 764110347
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,113| The GCD process '11421': initial Mi 131313
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,115| The GCD process '11431': initial Mi 327635
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,116| send_message_to_service(State, '11411', {sendy, 5069407}
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:03,119| send_message_to_service(State, '11431', {sendy, 10647}
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:06,159| Client '11431' calculated new Mi 8225 at "18.11 18:52:06,155|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:06,161| Client '11411' calculated new Mi 3699297 at "18.11 18:52:06,155|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:09,168| Client '11411' calculated new Mi 6272 at "18.11 18:52:09,164|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:09,169| Client '11421' calculated new Mi 7938 at "18.11 18:52:09,164|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:12,189| Client '11431' calculated new Mi 1953 at "18.11 18:52:12,185|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:15,207| Client '11411' calculated new Mi 413 at "18.11 18:52:15,203|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:15,210| Client '11421' calculated new Mi 1666 at "18.11 18:52:15,204|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:18,227| Client '11431' calculated new Mi 301 at "18.11 18:52:18,215|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:21,243| Client '11421' calculated new Mi 14 at "18.11 18:52:21,236|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:21,252| Client '11411' calculated new Mi 112 at "18.11 18:52:21,247|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:24,257| Client '11431' calculated new Mi 7 at "18.11 18:52:24,253|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:24,265| Client '11411' calculated new Mi 14 at "18.11 18:52:24,263|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:27,282| Client '11411' calculated new Mi 7 at "18.11 18:52:27,278|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:30,293| Client '11421' calculated new Mi 7 at "18.11 18:52:30,289|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:39,337| Client '11421' finished calculation with Mi 7 at "18.11 18:52:39,334|"
+Koordinator@Ben-Rexins-MacBook-Pro.local18.11 18:52:39,338| Client '11431' finished calculation with Mi 7 at "18.11 18:52:39,336|"

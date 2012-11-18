@@ -1,0 +1,17 @@
+Nameservice Startzeit: 18.11 18:50:47,946| mit PID <0.44.0> registriert mit Namen 'nameservice'.
+rebind um 18.11 18:51:20,703| von <9451.64.0>: {chef,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:28,341| von <9451.76.0>:{chef,coord@Ben-Rexins-MacBook-Pro.local}.
+rebind um 18.11 18:51:28,367| von <9451.80.0>: {11411,coord@Ben-Rexins-MacBook-Pro.local}.
+rebind um 18.11 18:51:28,374| von <9451.81.0>: {11421,coord@Ben-Rexins-MacBook-Pro.local}.
+rebind um 18.11 18:51:28,375| von <9451.83.0>: {11431,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:28,385| von <9451.64.0>:{11411,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:28,394| von <9451.64.0>:{11421,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:28,405| von <9451.64.0>:{11431,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,716| von <9451.76.0>:{chef,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,806| von <9451.80.0>:{11421,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,808| von <9451.81.0>:{11431,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,808| von <9451.83.0>:{11411,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,834| von <9451.80.0>:{11431,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,909| von <9451.83.0>:{11421,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:51:54,909| von <9451.81.0>:{11411,coord@Ben-Rexins-MacBook-Pro.local}.
+lookup um 18.11 18:52:03,104| von <9451.76.0>:{chef,coord@Ben-Rexins-MacBook-Pro.local}.

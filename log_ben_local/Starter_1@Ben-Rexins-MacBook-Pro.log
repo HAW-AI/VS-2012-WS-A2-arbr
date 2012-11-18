@@ -1,0 +1,5 @@
+[2012-11-18 18:51:28,353] (<0.76.0>) Koordinator chef in der Node 'coord@Ben-Rexins-MacBook-Pro.local' gebunden
+[2012-11-18 18:51:28,360] (<0.76.0>) Erstelle GGT-Prozess (Steeringval:steeringval , Arbeitszeit: 3 , TermZeit: 3 , GGTProzessAnzahl: 3)
+[2012-11-18 18:51:28,362] (<0.76.0>) GGT-Prozess Nr: 1 wurde gestartet
+[2012-11-18 18:51:28,367] (<0.76.0>) GGT-Prozess Nr: 2 wurde gestartet
+[2012-11-18 18:51:28,368] (<0.76.0>) GGT-Prozess Nr: 3 wurde gestartet

@@ -1,0 +1,51 @@
+"2012-11-18 18:51:28,384" bindet to: <10150.44.0> 
+"2012-11-18 18:51:28,385" send hello to koord ({chef,
+                                                'coord@Ben-Rexins-MacBook-Pro.local'}) with myID ('11421') 
+"2012-11-18 18:51:54,775" got Neighbours '11431' and '11411' 
+"2012-11-18 18:51:54,867" Linker Nachbar '11431' befindet sich auf node 'coord@Ben-Rexins-MacBook-Pro.local'. 
+"2012-11-18 18:51:54,912" Rechter Nachbar '11411' befindet sich auf node 'coord@Ben-Rexins-MacBook-Pro.local'. 
+"2012-11-18 18:52:03,117" got new Mi: 131313 
+"2012-11-18 18:52:06,150" initiate abstimmung (after block). Mi: 131313 
+"2012-11-18 18:52:06,157" algo(Mi: 131313, Y: 8225, Arbeitszeit: 3000) 
+"2012-11-18 18:52:09,162" send sendy (7938) to {'11431',
+                                                'coord@Ben-Rexins-MacBook-Pro.local'} and {'11411',
+                                                                                           'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:09,165" received sendy : 3699297 
+"2012-11-18 18:52:09,166" algo(Mi: 7938, Y: 3699297, Arbeitszeit: 3000) 
+"2012-11-18 18:52:12,189" Mi didn't change. Mi: 7938 Mi2: 7938 
+"2012-11-18 18:52:12,191" received sendy : 6272 
+"2012-11-18 18:52:12,194" algo(Mi: 7938, Y: 6272, Arbeitszeit: 3000) 
+"2012-11-18 18:52:15,201" send sendy (1666) to {'11431',
+                                                'coord@Ben-Rexins-MacBook-Pro.local'} and {'11411',
+                                                                                           'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:15,205" Mi (7938) did change to 1666 
+"2012-11-18 18:52:15,205" received sendy : 1953 
+"2012-11-18 18:52:15,206" algo(Mi: 1666, Y: 1953, Arbeitszeit: 3000) 
+"2012-11-18 18:52:18,227" Mi didn't change. Mi: 1666 Mi2: 1666 
+"2012-11-18 18:52:18,228" received sendy : 413 
+"2012-11-18 18:52:18,229" algo(Mi: 1666, Y: 413, Arbeitszeit: 3000) 
+"2012-11-18 18:52:21,233" send sendy (14) to {'11431',
+                                              'coord@Ben-Rexins-MacBook-Pro.local'} and {'11411',
+                                                                                         'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:21,237" Mi (1666) did change to 14 
+"2012-11-18 18:52:21,238" received sendy : 301 
+"2012-11-18 18:52:21,239" algo(Mi: 14, Y: 301, Arbeitszeit: 3000) 
+"2012-11-18 18:52:24,251" Mi didn't change. Mi: 14 Mi2: 14 
+"2012-11-18 18:52:24,253" received sendy : 112 
+"2012-11-18 18:52:24,253" algo(Mi: 14, Y: 112, Arbeitszeit: 3000) 
+"2012-11-18 18:52:27,270" Mi didn't change. Mi: 14 Mi2: 14 
+"2012-11-18 18:52:27,272" received sendy : 7 
+"2012-11-18 18:52:27,273" algo(Mi: 14, Y: 7, Arbeitszeit: 3000) 
+"2012-11-18 18:52:30,288" send sendy (7) to {'11431',
+                                             'coord@Ben-Rexins-MacBook-Pro.local'} and {'11411',
+                                                                                        'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:30,290" Mi (14) did change to 7 
+"2012-11-18 18:52:30,290" received sendy : 14 
+"2012-11-18 18:52:30,291" algo(Mi: 7, Y: 14, Arbeitszeit: 3000) 
+"2012-11-18 18:52:33,306" Mi didn't change. Mi: 7 Mi2: 7 
+"2012-11-18 18:52:33,307" received sendy : 7 
+"2012-11-18 18:52:33,307" algo(Mi: 7, Y: 7, Arbeitszeit: 3000) 
+"2012-11-18 18:52:36,319" Mi didn't change. Mi: 7 Mi2: 7 
+"2012-11-18 18:52:39,328" initiate abstimmung (after block). Mi: 7 
+"2012-11-18 18:52:39,333" ('11431' ) forward abstimmung. Mi: 7 
+"2012-11-18 18:52:39,334" send end of algorithm (briefterm) to koordinator. Mi: 7 

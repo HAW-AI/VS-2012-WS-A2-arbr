@@ -1,0 +1,55 @@
+"2012-11-18 18:51:28,377" bindet to: <10150.44.0> 
+"2012-11-18 18:51:28,377" send hello to koord ({chef,
+                                                'coord@Ben-Rexins-MacBook-Pro.local'}) with myID ('11411') 
+"2012-11-18 18:51:54,773" got Neighbours '11421' and '11431' 
+"2012-11-18 18:51:54,823" Linker Nachbar '11421' befindet sich auf node 'coord@Ben-Rexins-MacBook-Pro.local'. 
+"2012-11-18 18:51:54,836" Rechter Nachbar '11431' befindet sich auf node 'coord@Ben-Rexins-MacBook-Pro.local'. 
+"2012-11-18 18:52:03,114" got new Mi: 764110347 
+"2012-11-18 18:52:03,143" received sendy : 5069407 
+"2012-11-18 18:52:03,143" algo(Mi: 764110347, Y: 5069407, Arbeitszeit: 3000) 
+"2012-11-18 18:52:06,153" send sendy (3699297) to {'11421',
+                                                   'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                              'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:06,155" Mi (764110347) did change to 3699297 
+"2012-11-18 18:52:06,156" ignore abstimmung; not finished yet. Mi: 3699297 
+"2012-11-18 18:52:06,157" received sendy : 8225 
+"2012-11-18 18:52:06,158" algo(Mi: 3699297, Y: 8225, Arbeitszeit: 3000) 
+"2012-11-18 18:52:09,162" send sendy (6272) to {'11421',
+                                                'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                           'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:09,164" Mi (3699297) did change to 6272 
+"2012-11-18 18:52:09,165" received sendy : 7938 
+"2012-11-18 18:52:09,165" algo(Mi: 6272, Y: 7938, Arbeitszeit: 3000) 
+"2012-11-18 18:52:12,185" Mi didn't change. Mi: 6272 Mi2: 6272 
+"2012-11-18 18:52:12,186" received sendy : 1953 
+"2012-11-18 18:52:12,187" algo(Mi: 6272, Y: 1953, Arbeitszeit: 3000) 
+"2012-11-18 18:52:15,201" send sendy (413) to {'11421',
+                                               'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                          'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:15,203" Mi (6272) did change to 413 
+"2012-11-18 18:52:15,203" received sendy : 1666 
+"2012-11-18 18:52:15,204" algo(Mi: 413, Y: 1666, Arbeitszeit: 3000) 
+"2012-11-18 18:52:18,229" Mi didn't change. Mi: 413 Mi2: 413 
+"2012-11-18 18:52:18,232" received sendy : 301 
+"2012-11-18 18:52:18,235" algo(Mi: 413, Y: 301, Arbeitszeit: 3000) 
+"2012-11-18 18:52:21,244" send sendy (112) to {'11421',
+                                               'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                          'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:21,247" Mi (413) did change to 112 
+"2012-11-18 18:52:21,248" received sendy : 14 
+"2012-11-18 18:52:21,249" algo(Mi: 112, Y: 14, Arbeitszeit: 3000) 
+"2012-11-18 18:52:24,261" send sendy (14) to {'11421',
+                                              'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                         'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:24,263" Mi (112) did change to 14 
+"2012-11-18 18:52:24,266" received sendy : 7 
+"2012-11-18 18:52:24,267" algo(Mi: 14, Y: 7, Arbeitszeit: 3000) 
+"2012-11-18 18:52:27,274" send sendy (7) to {'11421',
+                                             'coord@Ben-Rexins-MacBook-Pro.local'} and {'11431',
+                                                                                        'coord@Ben-Rexins-MacBook-Pro.local'} 
+"2012-11-18 18:52:27,279" Mi (14) did change to 7 
+"2012-11-18 18:52:30,287" initiate abstimmung (after block). Mi: 7 
+"2012-11-18 18:52:30,291" algo(Mi: 7, Y: 7, Arbeitszeit: 3000) 
+"2012-11-18 18:52:36,318" initiate abstimmung (after block). Mi: 7 
+"2012-11-18 18:52:39,330" ('11421' ) forward abstimmung. Mi: 7 
+"2012-11-18 18:52:39,334" ('11431' ) forward abstimmung. Mi: 7 
