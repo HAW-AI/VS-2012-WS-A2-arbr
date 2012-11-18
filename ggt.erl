@@ -104,12 +104,13 @@ loop(Config,Mi)->
 				Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config),
 				io:format("Mi: ~p Mi2: ~p", [Mi, Mi2]),
 				NewConfig=Config#config{lastSendy=now()},
-				if 
-					Mi2 =/= Mi -> sendToNs(NewConfig,Mi2),
+				case Mi2 =/= Mi of
+					true -> sendToNs(NewConfig,Mi2),
 						NewConfig#config.koordPID ! {briefmi, {NewConfig#config.myID, Mi2, werkzeug:timeMilliSecond()}},
 						werkzeug:logging(Config#config.logfile, nice_format("~p Mi (~p) did change to ~p",[util:timestamp(), Mi,Mi2])),
 						loop(NewConfig, Mi2);
-					true -> werkzeug:logging(Config#config.logfile, nice_format("~p Mi didn't change. Mi: ~p Mi2: ~p",[util:timestamp(),Mi,Mi2])), loop(NewConfig, Mi)
+					_ ->
+						werkzeug:logging(Config#config.logfile, nice_format("~p Mi didn't change. Mi: ~p Mi2: ~p",[util:timestamp(),Mi,Mi2])), loop(NewConfig, Mi)
 				end;
 		
 		{abstimmung, From} when From == Config#config.myID ->
@@ -172,11 +173,13 @@ abstimmung(Config, Mi)	->
 				Mi2=algo(Mi, Y, Config#config.arbeitszeit,Config),
 				io:format("Mi: ~p Mi2: ~p", [Mi, Mi2]),
 				NewConfig=Config#config{lastSendy=now()},
-				if 
-					Mi2 =/= Mi -> sendToNs(NewConfig,Mi2),
+				case Mi2 =/= Mi of
+					true -> sendToNs(NewConfig,Mi2),
 						NewConfig#config.koordPID ! {briefmi, {NewConfig#config.myID, Mi2, werkzeug:timeMilliSecond()}},
+						werkzeug:logging(Config#config.logfile, nice_format("~p Mi (~p) did change to ~p",[util:timestamp(), Mi,Mi2])),
 						loop(NewConfig, Mi2);
-					true -> loop(NewConfig, Mi)
+					_ ->
+						werkzeug:logging(Config#config.logfile, nice_format("~p Mi didn't change. Mi: ~p Mi2: ~p",[util:timestamp(),Mi,Mi2])), loop(NewConfig, Mi)
 				end;
 		{tellmi, From} -> From ! Mi, abstimmung(Config, Mi);
 		{setpm,MiNeu} ->
