@@ -147,7 +147,11 @@ terminating(State) ->
   kill_all_gcd_clients(State),
 
   log("Trying to unbind coordinator name at nameservice"),
-  global:whereis_name(nameservice) ! {self(), {unbind, get_coordinator_name(State)}},
+  case global:whereis_name(nameservice) of
+    undefined -> ok; %% do nothing, if nameservice not available
+    Nameservice ->
+      Nameservice ! {self(), {unbind, get_coordinator_name(State)}}
+  end,
   log("Terminating coordinator process. Goodbye."),
   exit(self()).
 
