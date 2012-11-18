@@ -147,12 +147,10 @@ loop(Config,Mi)->
 algo(Mi, Y, Arbeitszeit,Config) ->  % 21.
 			werkzeug:logging(Config#config.logfile,nice_format("~p algo(Mi: ~p, Y: ~p, Arbeitszeit: ~p)",[util:timestamp(),Mi, Y, Arbeitszeit])),
 			timer:sleep(Arbeitszeit),
- 	 		case Y < Mi of
-   			 	true -> Mi2=((Mi-1) rem Y) + 1,
-						werkzeug:logging(Config#config.logfile,nice_format("~p Mi2: ~p )",[util:timestamp(),Mi2])),
-						Mi2;
-   			 	_ -> Mi
-  			end.
+ 	 		if 
+				Y<Mi	->	(trunc(Mi-1) rem trunc(Y))+1;
+				true 	-> Mi
+			end.
 			
 sendToNs(Config, Mi)	-> werkzeug:logging(Config#config.logfile, nice_format("~p send sendy (~p) to ~p and ~p",[util:timestamp(), Mi, Config#config.leftN, Config#config.rightN])), Config#config.leftN ! {sendy, Mi}, Config#config.rightN ! {sendy, Mi}.
 
